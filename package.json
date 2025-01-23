@@ -7,7 +7,8 @@
     "test": "standard"
   },
   "files": [
-    "index.js"
+    "index.js",
+    "spec/"
   ],
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/holepunchto/blind-peer-client#readme",
   "devDependencies": {
+    "hyperdb": "^4.9.1",
     "standard": "^17.1.2"
   }
 }
