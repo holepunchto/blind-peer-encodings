@@ -28,5 +28,8 @@
   "devDependencies": {
     "hyperdb": "^4.9.1",
     "standard": "^17.1.2"
+  },
+  "dependencies": {
+    "compact-encoding": "^2.16.0"
   }
 }

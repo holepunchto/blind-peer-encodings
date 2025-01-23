@@ -1,3 +1,4 @@
+const c = require('compact-encoding')
 const definition = require('./spec/hyperdb')
 const schema = require('./spec/hyperschema')
 
