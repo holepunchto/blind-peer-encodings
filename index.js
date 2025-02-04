@@ -30,10 +30,16 @@ class BlindPeerError extends Error {
     return new BlindPeerError('Mailbox not found', 'MAILBOX_NOT_FOUND', BlindPeerError.MAILBOX_NOT_FOUND)
   }
 
+  static INVALID_MAILBOX_ID () {
+    return new BlindPeerError('Invalid mailbox id', 'INVALID_MAILBOX_ID', BlindPeerError.INVALID_MAILBOX_ID)
+  }
+
   static fromRpcCause (cause) {
     switch (cause.code) {
       case 'MAILBOX_NOT_FOUND':
         return BlindPeerError.MAILBOX_NOT_FOUND(cause.message)
+      case 'INVALID_MAILBOX_ID':
+        return BlindPeerError.INVALID_MAILBOX_ID(cause.message)
       default:
         throw new BlindPeerError(cause.message)
     }
