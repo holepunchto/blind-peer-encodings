@@ -37,7 +37,7 @@ const encoding0 = {
 // @blind-peer/request-post
 const encoding1 = {
   preencode (state, m) {
-    c.fixed32.preencode(state, m.id)
+    c.buffer.preencode(state, m.id)
     state.end++ // max flag is 1 so always one byte
 
     if (m.message) c.buffer.preencode(state, m.message)
@@ -45,13 +45,13 @@ const encoding1 = {
   encode (state, m) {
     const flags = m.message ? 1 : 0
 
-    c.fixed32.encode(state, m.id)
+    c.buffer.encode(state, m.id)
     c.uint.encode(state, flags)
 
     if (m.message) c.buffer.encode(state, m.message)
   },
   decode (state) {
-    const r0 = c.fixed32.decode(state)
+    const r0 = c.buffer.decode(state)
     const flags = c.uint.decode(state)
 
     return {

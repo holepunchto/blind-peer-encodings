@@ -36,7 +36,7 @@
         {
           "name": "id",
           "required": true,
-          "type": "fixed32",
+          "type": "buffer",
           "version": 1
         },
         {

@@ -70,7 +70,7 @@ blind.register({
   fields: [
     {
       name: 'id',
-      type: 'fixed32',
+      type: 'buffer',
       required: true
     },
     {
