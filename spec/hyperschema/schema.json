@@ -1,46 +1,28 @@
 {
-  "version": 2,
+  "version": 1,
   "schema": [
     {
-      "name": "request-mailbox",
+      "name": "seeds",
       "namespace": "blind-peer",
       "compact": false,
-      "flagsPosition": 2,
+      "flagsPosition": -1,
       "fields": [
         {
           "name": "id",
           "required": true,
-          "type": "fixed32",
+          "type": "string",
           "version": 1
         },
         {
-          "name": "autobase",
+          "name": "swarm",
           "required": true,
           "type": "fixed32",
           "version": 1
         },
         {
-          "name": "blockEncryptionKey",
-          "type": "fixed32",
-          "version": 1
-        }
-      ]
-    },
-    {
-      "name": "response-mailbox",
-      "namespace": "blind-peer",
-      "compact": false,
-      "flagsPosition": 1,
-      "fields": [
-        {
-          "name": "writer",
+          "name": "encryption",
           "required": true,
           "type": "fixed32",
-          "version": 1
-        },
-        {
-          "name": "open",
-          "type": "bool",
           "version": 1
         }
       ]
@@ -92,26 +74,6 @@
           "name": "blockEncryptionKey",
           "type": "fixed32",
           "version": 1
-        }
-      ]
-    },
-    {
-      "name": "seeds",
-      "namespace": "blind-peer",
-      "compact": false,
-      "flagsPosition": -1,
-      "fields": [
-        {
-          "name": "swarm",
-          "required": true,
-          "type": "fixed32",
-          "version": 2
-        },
-        {
-          "name": "encryption",
-          "required": true,
-          "type": "fixed32",
-          "version": 2
         }
       ]
     }

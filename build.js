@@ -48,6 +48,11 @@ blind.register({
   name: 'seeds',
   fields: [
     {
+      name: 'id',
+      type: 'string',
+      required: true
+    },
+    {
       name: 'swarm',
       type: 'fixed32',
       required: true
@@ -121,7 +126,7 @@ blindDB.indexes.register({
 blindDB.collections.register({
   name: 'seeds',
   schema: '@blind-peer/seeds',
-  key: ['swarm']
+  key: ['id']
 })
 
 HyperDB.toDisk(db)

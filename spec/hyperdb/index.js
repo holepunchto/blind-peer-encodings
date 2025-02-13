@@ -96,11 +96,11 @@ collection0.indexes.push(index1)
 
 // '@blind-peer/seeds' collection key
 const collection2_key = new IndexEncoder([
-  IndexEncoder.BUFFER
+  IndexEncoder.STRING
 ], { prefix: 2 })
 
 function collection2_indexify (record) {
-  const a = record.swarm
+  const a = record.id
   return a === undefined ? [] : [a]
 }
 
@@ -112,14 +112,14 @@ function collection2_reconstruct (version, keyBuf, valueBuf) {
   const key = collection2_key.decode(keyBuf)
   setVersion(version)
   const record = c.decode(collection2_enc, valueBuf)
-  record.swarm = key[0]
+  record.id = key[0]
   return record
 }
 // '@blind-peer/seeds' key reconstruction function
 function collection2_reconstruct_key (keyBuf) {
   const key = collection2_key.decode(keyBuf)
   return {
-    swarm: key[0]
+    id: key[0]
   }
 }
 
@@ -128,7 +128,7 @@ const collection2 = {
   name: '@blind-peer/seeds',
   id: 2,
   encodeKey (record) {
-    const key = [record.swarm]
+    const key = [record.id]
     return collection2_key.encode(key)
   },
   encodeKeyRange ({ gt, lt, gte, lte } = {}) {

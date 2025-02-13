@@ -37,7 +37,7 @@
       "schema": "@blind-peer/seeds",
       "derived": false,
       "key": [
-        "swarm"
+        "id"
       ],
       "trigger": null
     }
