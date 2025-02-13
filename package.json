@@ -4,7 +4,7 @@
   "description": "Blind-peer encodings",
   "main": "index.js",
   "scripts": {
-    "test": "standard"
+    "test": "standard && brittle test.js"
   },
   "files": [
     "index.js",
@@ -26,10 +26,12 @@
   },
   "homepage": "https://github.com/holepunchto/blind-peer-client#readme",
   "devDependencies": {
+    "brittle": "^3.10.0",
     "hyperdb": "^4.9.1",
     "standard": "^17.1.2"
   },
   "dependencies": {
-    "compact-encoding": "^2.16.0"
+    "compact-encoding": "^2.16.0",
+    "hypercore-crypto": "^3.5.0"
   }
 }

@@ -1,11 +1,13 @@
 const c = require('compact-encoding')
 const definition = require('./spec/hyperdb')
 const schema = require('./spec/hyperschema')
+const hypCrypto = require('hypercore-crypto')
+const b4a = require('b4a')
 
-const addMailboxEncoding = {
+/* const addMailboxEncoding = {
   requestEncoding: schema.resolveStruct('@blind-peer/request-mailbox'),
   responseEncoding: schema.resolveStruct('@blind-peer/response-mailbox')
-}
+} */
 
 const postEncoding = {
   requestEncoding: schema.resolveStruct('@blind-peer/request-post'),
@@ -13,6 +15,14 @@ const postEncoding = {
 }
 
 const seedsEncoding = schema.resolveStruct('@blind-peer/seeds')
+
+function createMailbox (blindWriterEncryptionPublicKey, { entropy, blockEncryptionKey } = {}) {
+  if (!entropy) throw new Error('Entropy required')
+  if (!blockEncryptionKey) blockEncryptionKey = b4a.alloc(0)
+
+  const msg = b4a.concat([entropy, blockEncryptionKey])
+  return hypCrypto.encrypt(msg, blindWriterEncryptionPublicKey)
+}
 
 class BlindPeerError extends Error {
   constructor (msg, code, fn = BlindPeerError) {
@@ -51,8 +61,8 @@ class BlindPeerError extends Error {
 module.exports = {
   definition,
   schema,
-  addMailboxEncoding,
   postEncoding,
   seedsEncoding,
-  BlindPeerError
+  BlindPeerError,
+  createMailbox
 }
