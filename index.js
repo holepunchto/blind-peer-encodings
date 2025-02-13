@@ -12,6 +12,8 @@ const postEncoding = {
   responseEncoding: c.none
 }
 
+const seedsEncoding = schema.resolveStruct('@blind-peer/seeds')
+
 class BlindPeerError extends Error {
   constructor (msg, code, fn = BlindPeerError) {
     super(`${code}: ${msg}`)
@@ -51,5 +53,6 @@ module.exports = {
   schema,
   addMailboxEncoding,
   postEncoding,
+  seedsEncoding,
   BlindPeerError
 }
