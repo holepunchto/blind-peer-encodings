@@ -16,11 +16,11 @@ const postEncoding = {
 
 const seedsEncoding = schema.resolveStruct('@blind-peer/seeds')
 
-function createMailbox (blindWriterEncryptionPublicKey, { entropy, blockEncryptionKey } = {}) {
+function createMailbox (blindWriterEncryptionPublicKey, { entropy, autobaseKey, blockEncryptionKey } = {}) {
   if (!entropy) throw new Error('Entropy required')
   if (!blockEncryptionKey) blockEncryptionKey = b4a.alloc(0)
 
-  const msg = b4a.concat([entropy, blockEncryptionKey])
+  const msg = b4a.concat([entropy, autobaseKey, blockEncryptionKey])
   return hypCrypto.encrypt(msg, blindWriterEncryptionPublicKey)
 }
 
