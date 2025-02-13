@@ -94,8 +94,64 @@ const index1 = {
 }
 collection0.indexes.push(index1)
 
+// '@blind-peer/seeds' collection key
+const collection2_key = new IndexEncoder([
+  IndexEncoder.BUFFER
+], { prefix: 2 })
+
+function collection2_indexify (record) {
+  const a = record.swarm
+  return a === undefined ? [] : [a]
+}
+
+// '@blind-peer/seeds' value encoding
+const collection2_enc = getEncoding('@blind-peer/seeds/hyperdb#2')
+
+// '@blind-peer/seeds' reconstruction function
+function collection2_reconstruct (version, keyBuf, valueBuf) {
+  const key = collection2_key.decode(keyBuf)
+  setVersion(version)
+  const record = c.decode(collection2_enc, valueBuf)
+  record.swarm = key[0]
+  return record
+}
+// '@blind-peer/seeds' key reconstruction function
+function collection2_reconstruct_key (keyBuf) {
+  const key = collection2_key.decode(keyBuf)
+  return {
+    swarm: key[0]
+  }
+}
+
+// '@blind-peer/seeds'
+const collection2 = {
+  name: '@blind-peer/seeds',
+  id: 2,
+  encodeKey (record) {
+    const key = [record.swarm]
+    return collection2_key.encode(key)
+  },
+  encodeKeyRange ({ gt, lt, gte, lte } = {}) {
+    return collection2_key.encodeRange({
+      gt: gt ? collection2_indexify(gt) : null,
+      lt: lt ? collection2_indexify(lt) : null,
+      gte: gte ? collection2_indexify(gte) : null,
+      lte: lte ? collection2_indexify(lte) : null
+    })
+  },
+  encodeValue (version, record) {
+    setVersion(version)
+    return c.encode(collection2_enc, record)
+  },
+  trigger: null,
+  reconstruct: collection2_reconstruct,
+  reconstructKey: collection2_reconstruct_key,
+  indexes: []
+}
+
 const collections = [
-  collection0
+  collection0,
+  collection2
 ]
 
 const indexes = [
@@ -107,6 +163,7 @@ module.exports = { version, collections, indexes, resolveCollection, resolveInde
 function resolveCollection (name) {
   switch (name) {
     case '@blind-peer/mailbox': return collection0
+    case '@blind-peer/seeds': return collection2
     default: return null
   }
 }

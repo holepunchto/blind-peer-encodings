@@ -178,6 +178,24 @@ const encoding5 = {
   }
 }
 
+// @blind-peer/seeds/hyperdb#2
+const encoding6 = {
+  preencode (state, m) {
+    c.fixed32.preencode(state, m.encryption)
+  },
+  encode (state, m) {
+    c.fixed32.encode(state, m.encryption)
+  },
+  decode (state) {
+    const r1 = c.fixed32.decode(state)
+
+    return {
+      swarm: null,
+      encryption: r1
+    }
+  }
+}
+
 function setVersion (v) {
   version = v
 }
@@ -206,6 +224,7 @@ function getEncoding (name) {
     case '@blind-peer/mailbox': return encoding3
     case '@blind-peer/seeds': return encoding4
     case '@blind-peer/mailbox/hyperdb#0': return encoding5
+    case '@blind-peer/seeds/hyperdb#2': return encoding6
     default: throw new Error('Encoder not found ' + name)
   }
 }

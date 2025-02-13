@@ -27,6 +27,19 @@
       "key": [
         "autobase"
       ]
+    },
+    {
+      "name": "seeds",
+      "namespace": "blind-peer",
+      "id": 2,
+      "type": 1,
+      "indexes": [],
+      "schema": "@blind-peer/seeds",
+      "derived": false,
+      "key": [
+        "swarm"
+      ],
+      "trigger": null
     }
   ]
 }

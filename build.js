@@ -118,4 +118,10 @@ blindDB.indexes.register({
   unique: true
 })
 
+blindDB.collections.register({
+  name: 'seeds',
+  schema: '@blind-peer/seeds',
+  key: ['swarm']
+})
+
 HyperDB.toDisk(db)
