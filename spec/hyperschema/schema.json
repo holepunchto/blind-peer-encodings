@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "schema": [
     {
       "name": "request-mailbox",
@@ -92,6 +92,26 @@
           "name": "blockEncryptionKey",
           "type": "fixed32",
           "version": 1
+        }
+      ]
+    },
+    {
+      "name": "seeds",
+      "namespace": "blind-peer",
+      "compact": false,
+      "flagsPosition": -1,
+      "fields": [
+        {
+          "name": "swarm",
+          "required": true,
+          "type": "fixed32",
+          "version": 2
+        },
+        {
+          "name": "encryption",
+          "required": true,
+          "type": "fixed32",
+          "version": 2
         }
       ]
     }
