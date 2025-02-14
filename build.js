@@ -7,43 +7,6 @@ const DB_DIR = './spec/hyperdb'
 const schema = Hyperschema.from(SCHEMA_DIR)
 const blind = schema.namespace('blind-peer')
 
-/*
-blind.register({
-  name: 'request-mailbox',
-  fields: [
-    {
-      name: 'id',
-      type: 'fixed32',
-      required: true
-    },
-    {
-      name: 'autobase',
-      type: 'fixed32',
-      required: true
-    },
-    {
-      name: 'blockEncryptionKey',
-      type: 'fixed32'
-    }
-  ]
-})
-
-blind.register({
-  name: 'response-mailbox',
-  fields: [
-    {
-      name: 'writer',
-      type: 'fixed32',
-      required: true
-    },
-    {
-      name: 'open',
-      type: 'bool'
-    }
-  ]
-})
-*/
-
 blind.register({
   name: 'seeds',
   fields: [
@@ -100,7 +63,8 @@ blind.register({
     },
     {
       name: 'blockEncryptionKey',
-      type: 'fixed32'
+      type: 'fixed32',
+      required: false
     }
   ]
 })
