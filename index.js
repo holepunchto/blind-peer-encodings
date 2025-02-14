@@ -3,11 +3,7 @@ const definition = require('./spec/hyperdb')
 const schema = require('./spec/hyperschema')
 const hypCrypto = require('hypercore-crypto')
 const b4a = require('b4a')
-
-/* const addMailboxEncoding = {
-  requestEncoding: schema.resolveStruct('@blind-peer/request-mailbox'),
-  responseEncoding: schema.resolveStruct('@blind-peer/response-mailbox')
-} */
+const Hypercore = require('hypercore')
 
 const postEncoding = {
   requestEncoding: schema.resolveStruct('@blind-peer/request-post'),
@@ -22,6 +18,14 @@ function createMailbox (blindWriterEncryptionPublicKey, { entropy, autobaseKey, 
 
   const msg = b4a.concat([entropy, autobaseKey, blockEncryptionKey])
   return hypCrypto.encrypt(msg, blindWriterEncryptionPublicKey)
+}
+
+function getKeyFromEntropy (entropy) {
+  const hypercoreKeyPair = hypCrypto.keyPair(entropy)
+  const manifest = {
+    signers: [{ publicKey: hypercoreKeyPair.publicKey }]
+  }
+  return Hypercore.key(manifest)
 }
 
 class BlindPeerError extends Error {
@@ -64,5 +68,6 @@ module.exports = {
   postEncoding,
   seedsEncoding,
   BlindPeerError,
-  createMailbox
+  createMailbox,
+  getKeyFromEntropy
 }
