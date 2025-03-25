@@ -8,7 +8,8 @@
   },
   "files": [
     "index.js",
-    "spec/"
+    "spec/",
+    "lib/"
   ],
   "repository": {
     "type": "git",
