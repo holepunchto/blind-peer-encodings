@@ -2,13 +2,17 @@ const c = require('compact-encoding')
 const definition = require('./spec/hyperdb')
 const schema = require('./spec/hyperschema')
 
-const addMailboxEncoding = {
-  requestEncoding: schema.resolveStruct('@blind-peer/request-mailbox'),
-  responseEncoding: schema.resolveStruct('@blind-peer/response-mailbox')
+const AddCoreRequest = schema.getEncoding('@blind-peer/add-core-request')
+const PostToMailboxRequest = schema.getEncoding('@blind-peer/post-to-mailbox-request')
+const Mailbox = schema.getEncoding('@blind-peer/mailbox')
+
+const PostToMailboxEncoding = {
+  requestEncoding: PostToMailboxRequest,
+  responseEncoding: c.none
 }
 
-const postEncoding = {
-  requestEncoding: schema.resolveStruct('@blind-peer/request-post'),
+const AddCoreEncoding = {
+  requestEncoding: AddCoreRequest,
   responseEncoding: c.none
 }
 
@@ -49,7 +53,8 @@ class BlindPeerError extends Error {
 module.exports = {
   definition,
   schema,
-  addMailboxEncoding,
-  postEncoding,
+  PostToMailboxEncoding,
+  AddCoreEncoding,
+  Mailbox,
   BlindPeerError
 }
