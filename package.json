@@ -30,6 +30,7 @@
     "standard": "^17.1.2"
   },
   "dependencies": {
-    "compact-encoding": "^2.16.0"
+    "compact-encoding": "^2.16.0",
+    "hyperschema": "^1.10.4"
   }
 }
