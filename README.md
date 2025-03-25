@@ -1,6 +1,6 @@
 # Blind Peer Encodings
 
-The encodings used by [Blind Peer](https://github.com/holepunchto/blind-peer) and its client [Blind Peering](https://github.com/holepunchto/blind-peering)
+The encodings used by [Blind Peer](https://github.com/holepunchto/blind-peer) and its client [Blind Peering](https://github.com/holepunchto/blind-peering).
 
 ## Install
 
