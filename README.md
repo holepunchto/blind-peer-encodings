@@ -1,6 +1,6 @@
 # Blind Peer Encodings
 
-The encodings used by [Blind Peer](https://github.com/holepunchto/blind-peer) and [Blind-Peer Client](https://github.com/holepunchto/blind-peer-client)
+The encodings used by [Blind Peer](https://github.com/holepunchto/blind-peer) and its client [Blind Peering](https://github.com/holepunchto/blind-peering)
 
 ## Install
 
@@ -18,10 +18,18 @@ The blind-peer Hyperdb definition
 
 The blind-peer Hyperdb schema
 
-#### `BlindPeerEncodings.addMailboxEncoding`
+#### `BlindPeerEncodings.PostToMailboxEncoding`
 
 The encoding for the blind-peer `addMailbox` RPC.
 
-#### `BlindPeerEncodings.postEncoding`
+#### `BlindPeerEncodings.AddCoreEncoding`
 
 The encoding for the blind-peer `post` RPC.
+
+#### `BlindPeerEncodings.Mailbox`
+
+The encoding of a mailbox in the hyperdb.
+
+#### `BlindPeerEncodings.BlindPeerError`
+
+Class with blind-peer-specific errors.
