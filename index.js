@@ -5,6 +5,7 @@ const schema = require('./spec/hyperschema')
 const AddCoreRequest = schema.getEncoding('@blind-peer/add-core-request')
 const PostToMailboxRequest = schema.getEncoding('@blind-peer/post-to-mailbox-request')
 const Mailbox = schema.getEncoding('@blind-peer/mailbox')
+const CoreRecord = schema.getEncoding('@blind-peer/core')
 
 const PostToMailboxEncoding = {
   requestEncoding: PostToMailboxRequest,
@@ -13,7 +14,7 @@ const PostToMailboxEncoding = {
 
 const AddCoreEncoding = {
   requestEncoding: AddCoreRequest,
-  responseEncoding: c.none
+  responseEncoding: CoreRecord
 }
 
 class BlindPeerError extends Error {
@@ -56,5 +57,6 @@ module.exports = {
   PostToMailboxEncoding,
   AddCoreEncoding,
   Mailbox,
+  CoreRecord,
   BlindPeerError
 }
