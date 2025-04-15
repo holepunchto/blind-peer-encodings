@@ -27,11 +27,11 @@
   },
   "homepage": "https://github.com/holepunchto/blind-peer-client#readme",
   "devDependencies": {
-    "hyperdb": "^4.9.1",
     "hyperschema": "^1.10.4",
     "standard": "^17.1.2"
   },
   "dependencies": {
-    "compact-encoding": "^2.16.0"
+    "compact-encoding": "^2.16.0",
+    "hyperdb": "^4.9.1"
   }
 }
