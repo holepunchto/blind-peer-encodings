@@ -267,7 +267,7 @@
       "name": "delete-core-request",
       "namespace": "blind-peer",
       "compact": false,
-      "flagsPosition": 0,
+      "flagsPosition": -1,
       "fields": [
         {
           "name": "key",

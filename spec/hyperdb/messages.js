@@ -269,18 +269,16 @@ const encoding7 = {
 // @blind-peer/delete-core-request
 const encoding8 = {
   preencode (state, m) {
-    c.uint.preencode(state, flags)
     c.fixed32.preencode(state, m.key)
   },
   encode (state, m) {
-    c.uint.encode(state, flags)
     c.fixed32.encode(state, m.key)
   },
   decode (state) {
-    const flags = state.start < state.end ? c.uint.decode(state) : 0
+    const r0 = c.fixed32.decode(state)
 
     return {
-      key: c.fixed32.decode(state)
+      key: r0
     }
   }
 }

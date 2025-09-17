@@ -116,7 +116,6 @@ peerSchema.register({
 
 peerSchema.register({
   name: 'delete-core-request',
-  flagsPosition: 0,
   fields: [
     {
       name: 'key',
