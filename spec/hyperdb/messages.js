@@ -266,8 +266,27 @@ const encoding7 = {
   }
 }
 
-// @blind-peer/core/hyperdb#2
+// @blind-peer/delete-core-request
 const encoding8 = {
+  preencode (state, m) {
+    c.uint.preencode(state, flags)
+    c.fixed32.preencode(state, m.key)
+  },
+  encode (state, m) {
+    c.uint.encode(state, flags)
+    c.fixed32.encode(state, m.key)
+  },
+  decode (state) {
+    const flags = state.start < state.end ? c.uint.decode(state) : 0
+
+    return {
+      key: c.fixed32.decode(state)
+    }
+  }
+}
+
+// @blind-peer/core/hyperdb#2
+const encoding9 = {
   preencode (state, m) {
     c.uint.preencode(state, m.length)
     c.uint.preencode(state, m.bytesAllocated)
@@ -351,7 +370,8 @@ function getEncoding (name) {
     case '@blind-peer/wakeup-entry': return encoding5
     case '@blind-peer/wakeup-reply': return encoding6
     case '@blind-peer/core': return encoding7
-    case '@blind-peer/core/hyperdb#2': return encoding8
+    case '@blind-peer/delete-core-request': return encoding8
+    case '@blind-peer/core/hyperdb#2': return encoding9
     default: throw new Error('Encoder not found ' + name)
   }
 }
