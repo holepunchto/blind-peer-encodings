@@ -266,6 +266,23 @@ const encoding7 = {
   }
 }
 
+// @blind-peer/delete-core-request
+const encoding8 = {
+  preencode (state, m) {
+    c.fixed32.preencode(state, m.key)
+  },
+  encode (state, m) {
+    c.fixed32.encode(state, m.key)
+  },
+  decode (state) {
+    const r0 = c.fixed32.decode(state)
+
+    return {
+      key: r0
+    }
+  }
+}
+
 function setVersion (v) {
   version = v
 }
@@ -296,6 +313,7 @@ function getEncoding (name) {
     case '@blind-peer/wakeup-entry': return encoding5
     case '@blind-peer/wakeup-reply': return encoding6
     case '@blind-peer/core': return encoding7
+    case '@blind-peer/delete-core-request': return encoding8
     default: throw new Error('Encoder not found ' + name)
   }
 }

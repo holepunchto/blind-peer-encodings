@@ -115,6 +115,17 @@ peerSchema.register({
 })
 
 peerSchema.register({
+  name: 'delete-core-request',
+  fields: [
+    {
+      name: 'key',
+      type: 'fixed32',
+      required: true
+    }
+  ]
+})
+
+peerSchema.register({
   name: 'post-to-mailbox-request',
   fields: [
     {
