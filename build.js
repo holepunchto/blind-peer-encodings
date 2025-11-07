@@ -115,6 +115,44 @@ peerSchema.register({
 })
 
 peerSchema.register({
+  name: 'add-autobase-cores-item',
+  fields: [
+    {
+      name: 'key',
+      type: 'fixed32',
+      required: true
+    },
+    {
+      name: 'length',
+      type: 'uint',
+      required: true
+    }
+  ]
+})
+
+peerSchema.register({
+  name: 'add-autobase-cores-request',
+  fields: [
+    {
+      name: 'cores',
+      type: '@blind-peer/add-autobase-cores-item',
+      array: true,
+      required: true
+    },
+    {
+      name: 'referrer',
+      type: 'fixed32',
+      required: true
+    },
+    {
+      name: 'priority',
+      type: 'uint',
+      required: false
+    }
+  ]
+})
+
+peerSchema.register({
   name: 'delete-core-request',
   fields: [
     {

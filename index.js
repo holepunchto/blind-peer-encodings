@@ -3,6 +3,7 @@ const definition = require('./spec/hyperdb')
 const schema = require('./spec/hyperschema')
 
 const AddCoreRequest = schema.getEncoding('@blind-peer/add-core-request')
+const AddAutobaseCoresRequest = schema.getEncoding('@blind-peer/add-autobase-cores-request')
 const DeleteCoreRequest = schema.getEncoding('@blind-peer/delete-core-request')
 
 const PostToMailboxRequest = schema.getEncoding('@blind-peer/post-to-mailbox-request')
@@ -17,6 +18,11 @@ const PostToMailboxEncoding = {
 const AddCoreEncoding = {
   requestEncoding: AddCoreRequest,
   responseEncoding: CoreRecord
+}
+
+const AddAutobaseCoresEncoding = {
+  requestEncoding: AddAutobaseCoresRequest,
+  responseEncoding: c.array(CoreRecord)
 }
 
 const DeleteCoreEncoding = {
@@ -71,6 +77,7 @@ module.exports = {
   schema,
   PostToMailboxEncoding,
   AddCoreEncoding,
+  AddAutobaseCoresEncoding,
   DeleteCoreEncoding,
   Mailbox,
   CoreRecord,
