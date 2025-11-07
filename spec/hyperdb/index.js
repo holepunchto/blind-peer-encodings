@@ -7,10 +7,9 @@ const { version, getEncoding, setVersion } = require('./messages.js')
 const helpers0 = require('../../lib/db-actions.js')
 
 // '@blind-peer/auth' collection key
-const collection0_key = new IndexEncoder([
-], { prefix: 0 })
+const collection0_key = new IndexEncoder([], { prefix: 0 })
 
-function collection0_indexify (record) {
+function collection0_indexify(record) {
   return []
 }
 
@@ -18,13 +17,13 @@ function collection0_indexify (record) {
 const collection0_enc = getEncoding('@blind-peer/auth')
 
 // '@blind-peer/auth' reconstruction function
-function collection0_reconstruct (version, keyBuf, valueBuf) {
+function collection0_reconstruct(version, keyBuf, valueBuf) {
   setVersion(version)
   const record = c.decode(collection0_enc, valueBuf)
   return record
 }
 // '@blind-peer/auth' key reconstruction function
-function collection0_reconstruct_key (keyBuf) {
+function collection0_reconstruct_key(keyBuf) {
   return {}
 }
 
@@ -32,11 +31,11 @@ function collection0_reconstruct_key (keyBuf) {
 const collection0 = {
   name: '@blind-peer/auth',
   id: 0,
-  encodeKey (record) {
+  encodeKey(record) {
     const key = []
     return collection0_key.encode(key)
   },
-  encodeKeyRange ({ gt, lt, gte, lte } = {}) {
+  encodeKeyRange({ gt, lt, gte, lte } = {}) {
     return collection0_key.encodeRange({
       gt: gt ? collection0_indexify(gt) : null,
       lt: lt ? collection0_indexify(lt) : null,
@@ -44,7 +43,7 @@ const collection0 = {
       lte: lte ? collection0_indexify(lte) : null
     })
   },
-  encodeValue (version, record) {
+  encodeValue(version, record) {
     setVersion(version)
     return c.encode(collection0_enc, record)
   },
@@ -55,10 +54,9 @@ const collection0 = {
 }
 
 // '@blind-peer/digest' collection key
-const collection1_key = new IndexEncoder([
-], { prefix: 1 })
+const collection1_key = new IndexEncoder([], { prefix: 1 })
 
-function collection1_indexify (record) {
+function collection1_indexify(record) {
   return []
 }
 
@@ -66,13 +64,13 @@ function collection1_indexify (record) {
 const collection1_enc = getEncoding('@blind-peer/digest')
 
 // '@blind-peer/digest' reconstruction function
-function collection1_reconstruct (version, keyBuf, valueBuf) {
+function collection1_reconstruct(version, keyBuf, valueBuf) {
   setVersion(version)
   const record = c.decode(collection1_enc, valueBuf)
   return record
 }
 // '@blind-peer/digest' key reconstruction function
-function collection1_reconstruct_key (keyBuf) {
+function collection1_reconstruct_key(keyBuf) {
   return {}
 }
 
@@ -80,11 +78,11 @@ function collection1_reconstruct_key (keyBuf) {
 const collection1 = {
   name: '@blind-peer/digest',
   id: 1,
-  encodeKey (record) {
+  encodeKey(record) {
     const key = []
     return collection1_key.encode(key)
   },
-  encodeKeyRange ({ gt, lt, gte, lte } = {}) {
+  encodeKeyRange({ gt, lt, gte, lte } = {}) {
     return collection1_key.encodeRange({
       gt: gt ? collection1_indexify(gt) : null,
       lt: lt ? collection1_indexify(lt) : null,
@@ -92,7 +90,7 @@ const collection1 = {
       lte: lte ? collection1_indexify(lte) : null
     })
   },
-  encodeValue (version, record) {
+  encodeValue(version, record) {
     setVersion(version)
     return c.encode(collection1_enc, record)
   },
@@ -103,11 +101,9 @@ const collection1 = {
 }
 
 // '@blind-peer/cores' collection key
-const collection2_key = new IndexEncoder([
-  IndexEncoder.BUFFER
-], { prefix: 2 })
+const collection2_key = new IndexEncoder([IndexEncoder.BUFFER], { prefix: 2 })
 
-function collection2_indexify (record) {
+function collection2_indexify(record) {
   const a = record.key
   return a === undefined ? [] : [a]
 }
@@ -116,7 +112,7 @@ function collection2_indexify (record) {
 const collection2_enc = getEncoding('@blind-peer/core/hyperdb#2')
 
 // '@blind-peer/cores' reconstruction function
-function collection2_reconstruct (version, keyBuf, valueBuf) {
+function collection2_reconstruct(version, keyBuf, valueBuf) {
   const key = collection2_key.decode(keyBuf)
   setVersion(version)
   const record = c.decode(collection2_enc, valueBuf)
@@ -124,7 +120,7 @@ function collection2_reconstruct (version, keyBuf, valueBuf) {
   return record
 }
 // '@blind-peer/cores' key reconstruction function
-function collection2_reconstruct_key (keyBuf) {
+function collection2_reconstruct_key(keyBuf) {
   const key = collection2_key.decode(keyBuf)
   return {
     key: key[0]
@@ -135,11 +131,11 @@ function collection2_reconstruct_key (keyBuf) {
 const collection2 = {
   name: '@blind-peer/cores',
   id: 2,
-  encodeKey (record) {
+  encodeKey(record) {
     const key = [record.key]
     return collection2_key.encode(key)
   },
-  encodeKeyRange ({ gt, lt, gte, lte } = {}) {
+  encodeKeyRange({ gt, lt, gte, lte } = {}) {
     return collection2_key.encodeRange({
       gt: gt ? collection2_indexify(gt) : null,
       lt: lt ? collection2_indexify(lt) : null,
@@ -147,7 +143,7 @@ const collection2 = {
       lte: lte ? collection2_indexify(lte) : null
     })
   },
-  encodeValue (version, record) {
+  encodeValue(version, record) {
     setVersion(version)
     return c.encode(collection2_enc, record)
   },
@@ -158,16 +154,14 @@ const collection2 = {
 }
 
 // '@blind-peer/cores-by-referrer' collection key
-const index3_key = new IndexEncoder([
-  IndexEncoder.BUFFER,
-  IndexEncoder.UINT,
-  IndexEncoder.BUFFER
-], { prefix: 3 })
+const index3_key = new IndexEncoder([IndexEncoder.BUFFER, IndexEncoder.UINT, IndexEncoder.BUFFER], {
+  prefix: 3
+})
 
 // '@blind-peer/cores-by-referrer' has the following schema defined key map
 const index3_map = helpers0.mapByReferrer
 
-function index3_indexify (record) {
+function index3_indexify(record) {
   const arr = []
 
   const a0 = record.referrer
@@ -189,10 +183,10 @@ function index3_indexify (record) {
 const index3 = {
   name: '@blind-peer/cores-by-referrer',
   id: 3,
-  encodeKey (record) {
+  encodeKey(record) {
     return index3_key.encode(index3_indexify(record))
   },
-  encodeKeyRange ({ gt, lt, gte, lte } = {}) {
+  encodeKeyRange({ gt, lt, gte, lte } = {}) {
     return index3_key.encodeRange({
       gt: gt ? index3_indexify(gt) : null,
       lt: lt ? index3_indexify(lt) : null,
@@ -201,7 +195,7 @@ const index3 = {
     })
   },
   encodeValue: (doc) => index3.collection.encodeKey(doc),
-  encodeIndexKeys (record, context) {
+  encodeIndexKeys(record, context) {
     const mapped = index3_map(record, context)
     const keys = new Array(mapped.length)
     for (let i = 0; i < mapped.length; i++) {
@@ -217,14 +211,12 @@ const index3 = {
 collection2.indexes.push(index3)
 
 // '@blind-peer/cores-by-announce' collection key
-const index4_key = new IndexEncoder([
-  IndexEncoder.BUFFER
-], { prefix: 4 })
+const index4_key = new IndexEncoder([IndexEncoder.BUFFER], { prefix: 4 })
 
 // '@blind-peer/cores-by-announce' has the following schema defined key map
 const index4_map = helpers0.mapByAnnounce
 
-function index4_indexify (record) {
+function index4_indexify(record) {
   const a = record.core
   return a === undefined ? [] : [a]
 }
@@ -233,10 +225,10 @@ function index4_indexify (record) {
 const index4 = {
   name: '@blind-peer/cores-by-announce',
   id: 4,
-  encodeKey (record) {
+  encodeKey(record) {
     return index4_key.encode(index4_indexify(record))
   },
-  encodeKeyRange ({ gt, lt, gte, lte } = {}) {
+  encodeKeyRange({ gt, lt, gte, lte } = {}) {
     return index4_key.encodeRange({
       gt: gt ? index4_indexify(gt) : null,
       lt: lt ? index4_indexify(lt) : null,
@@ -245,7 +237,7 @@ const index4 = {
     })
   },
   encodeValue: (doc) => index4.collection.encodeKey(doc),
-  encodeIndexKeys (record, context) {
+  encodeIndexKeys(record, context) {
     const mapped = index4_map(record, context)
     const keys = new Array(mapped.length)
     for (let i = 0; i < mapped.length; i++) {
@@ -261,13 +253,11 @@ const index4 = {
 collection2.indexes.push(index4)
 
 // '@blind-peer/cores-by-activity' collection key
-const index5_key = new IndexEncoder([
-  IndexEncoder.UINT,
-  IndexEncoder.UINT,
-  IndexEncoder.BUFFER
-], { prefix: 5 })
+const index5_key = new IndexEncoder([IndexEncoder.UINT, IndexEncoder.UINT, IndexEncoder.BUFFER], {
+  prefix: 5
+})
 
-function index5_indexify (record) {
+function index5_indexify(record) {
   const arr = []
 
   const a0 = record.priority
@@ -289,10 +279,10 @@ function index5_indexify (record) {
 const index5 = {
   name: '@blind-peer/cores-by-activity',
   id: 5,
-  encodeKey (record) {
+  encodeKey(record) {
     return index5_key.encode(index5_indexify(record))
   },
-  encodeKeyRange ({ gt, lt, gte, lte } = {}) {
+  encodeKeyRange({ gt, lt, gte, lte } = {}) {
     return index5_key.encodeRange({
       gt: gt ? index5_indexify(gt) : null,
       lt: lt ? index5_indexify(lt) : null,
@@ -301,7 +291,7 @@ const index5 = {
     })
   },
   encodeValue: (doc) => index5.collection.encodeKey(doc),
-  encodeIndexKeys (record, context) {
+  encodeIndexKeys(record, context) {
     return [index5_key.encode([record.priority, record.active, record.key])]
   },
   reconstruct: (keyBuf, valueBuf) => valueBuf,
@@ -311,12 +301,9 @@ const index5 = {
 collection2.indexes.push(index5)
 
 // '@blind-peer/cores-by-bytes-allocated' collection key
-const index6_key = new IndexEncoder([
-  IndexEncoder.UINT,
-  IndexEncoder.BUFFER
-], { prefix: 6 })
+const index6_key = new IndexEncoder([IndexEncoder.UINT, IndexEncoder.BUFFER], { prefix: 6 })
 
-function index6_indexify (record) {
+function index6_indexify(record) {
   const arr = []
 
   const a0 = record.bytesAllocated
@@ -334,10 +321,10 @@ function index6_indexify (record) {
 const index6 = {
   name: '@blind-peer/cores-by-bytes-allocated',
   id: 6,
-  encodeKey (record) {
+  encodeKey(record) {
     return index6_key.encode(index6_indexify(record))
   },
-  encodeKeyRange ({ gt, lt, gte, lte } = {}) {
+  encodeKeyRange({ gt, lt, gte, lte } = {}) {
     return index6_key.encodeRange({
       gt: gt ? index6_indexify(gt) : null,
       lt: lt ? index6_indexify(lt) : null,
@@ -346,7 +333,7 @@ const index6 = {
     })
   },
   encodeValue: (doc) => index6.collection.encodeKey(doc),
-  encodeIndexKeys (record, context) {
+  encodeIndexKeys(record, context) {
     return [index6_key.encode([record.bytesAllocated, record.key])]
   },
   reconstruct: (keyBuf, valueBuf) => valueBuf,
@@ -355,36 +342,36 @@ const index6 = {
 }
 collection2.indexes.push(index6)
 
-const collections = [
-  collection0,
-  collection1,
-  collection2
-]
+const collections = [collection0, collection1, collection2]
 
-const indexes = [
-  index3,
-  index4,
-  index5,
-  index6
-]
+const indexes = [index3, index4, index5, index6]
 
 module.exports = { version, collections, indexes, resolveCollection, resolveIndex }
 
-function resolveCollection (name) {
+function resolveCollection(name) {
   switch (name) {
-    case '@blind-peer/auth': return collection0
-    case '@blind-peer/digest': return collection1
-    case '@blind-peer/cores': return collection2
-    default: return null
+    case '@blind-peer/auth':
+      return collection0
+    case '@blind-peer/digest':
+      return collection1
+    case '@blind-peer/cores':
+      return collection2
+    default:
+      return null
   }
 }
 
-function resolveIndex (name) {
+function resolveIndex(name) {
   switch (name) {
-    case '@blind-peer/cores-by-referrer': return index3
-    case '@blind-peer/cores-by-announce': return index4
-    case '@blind-peer/cores-by-activity': return index5
-    case '@blind-peer/cores-by-bytes-allocated': return index6
-    default: return null
+    case '@blind-peer/cores-by-referrer':
+      return index3
+    case '@blind-peer/cores-by-announce':
+      return index4
+    case '@blind-peer/cores-by-activity':
+      return index5
+    case '@blind-peer/cores-by-bytes-allocated':
+      return index6
+    default:
+      return null
   }
 }

@@ -37,9 +37,7 @@
       ],
       "schema": "@blind-peer/core",
       "derived": false,
-      "key": [
-        "key"
-      ],
+      "key": ["key"],
       "trigger": null
     },
     {
@@ -95,10 +93,7 @@
       "type": 2,
       "collection": "@blind-peer/cores",
       "unique": false,
-      "key": [
-        "priority",
-        "active"
-      ]
+      "key": ["priority", "active"]
     },
     {
       "name": "cores-by-bytes-allocated",
@@ -107,9 +102,7 @@
       "type": 2,
       "collection": "@blind-peer/cores",
       "unique": false,
-      "key": [
-        "bytesAllocated"
-      ]
+      "key": ["bytesAllocated"]
     }
   ]
 }

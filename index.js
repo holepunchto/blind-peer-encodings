@@ -25,7 +25,7 @@ const DeleteCoreEncoding = {
 }
 
 class BlindPeerError extends Error {
-  constructor (msg, code, fn = BlindPeerError) {
+  constructor(msg, code, fn = BlindPeerError) {
     super(`${code}: ${msg}`)
     this.code = code
 
@@ -34,19 +34,27 @@ class BlindPeerError extends Error {
     }
   }
 
-  get name () {
+  get name() {
     return 'BlindPeerError'
   }
 
-  static MAILBOX_NOT_FOUND () {
-    return new BlindPeerError('Mailbox not found', 'MAILBOX_NOT_FOUND', BlindPeerError.MAILBOX_NOT_FOUND)
+  static MAILBOX_NOT_FOUND() {
+    return new BlindPeerError(
+      'Mailbox not found',
+      'MAILBOX_NOT_FOUND',
+      BlindPeerError.MAILBOX_NOT_FOUND
+    )
   }
 
-  static INVALID_MAILBOX_ID () {
-    return new BlindPeerError('Invalid mailbox id', 'INVALID_MAILBOX_ID', BlindPeerError.INVALID_MAILBOX_ID)
+  static INVALID_MAILBOX_ID() {
+    return new BlindPeerError(
+      'Invalid mailbox id',
+      'INVALID_MAILBOX_ID',
+      BlindPeerError.INVALID_MAILBOX_ID
+    )
   }
 
-  static fromRpcCause (cause) {
+  static fromRpcCause(cause) {
     switch (cause.code) {
       case 'MAILBOX_NOT_FOUND':
         return BlindPeerError.MAILBOX_NOT_FOUND(cause.message)

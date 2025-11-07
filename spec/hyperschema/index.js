@@ -11,15 +11,15 @@ let version = VERSION
 
 // @blind-peer/auth
 const encoding0 = {
-  preencode (state, m) {
+  preencode(state, m) {
     c.fixed32.preencode(state, m.swarming)
     c.fixed32.preencode(state, m.encryption)
   },
-  encode (state, m) {
+  encode(state, m) {
     c.fixed32.encode(state, m.swarming)
     c.fixed32.encode(state, m.encryption)
   },
-  decode (state) {
+  decode(state) {
     const r0 = c.fixed32.decode(state)
     const r1 = c.fixed32.decode(state)
 
@@ -32,13 +32,13 @@ const encoding0 = {
 
 // @blind-peer/digest
 const encoding1 = {
-  preencode (state, m) {
+  preencode(state, m) {
     c.uint.preencode(state, m.referrers)
     c.uint.preencode(state, m.cores)
     c.uint.preencode(state, m.bytesAllocated)
     state.end++ // max flag is 1 so always one byte
   },
-  encode (state, m) {
+  encode(state, m) {
     const flags = m.flushed ? 1 : 0
 
     c.uint.encode(state, m.referrers)
@@ -46,7 +46,7 @@ const encoding1 = {
     c.uint.encode(state, m.bytesAllocated)
     c.uint.encode(state, flags)
   },
-  decode (state) {
+  decode(state) {
     const r0 = c.uint.decode(state)
     const r1 = c.uint.decode(state)
     const r2 = c.uint.decode(state)
@@ -63,7 +63,7 @@ const encoding1 = {
 
 // @blind-peer/mailbox
 const encoding2 = {
-  preencode (state, m) {
+  preencode(state, m) {
     c.uint.preencode(state, m.version)
     c.fixed32.preencode(state, m.seed)
     state.end++ // max flag is 2 so always one byte
@@ -71,10 +71,8 @@ const encoding2 = {
     if (m.referrer) c.fixed32.preencode(state, m.referrer)
     if (m.blockEncryptionKey) c.fixed32.preencode(state, m.blockEncryptionKey)
   },
-  encode (state, m) {
-    const flags =
-      (m.referrer ? 1 : 0) |
-      (m.blockEncryptionKey ? 2 : 0)
+  encode(state, m) {
+    const flags = (m.referrer ? 1 : 0) | (m.blockEncryptionKey ? 2 : 0)
 
     c.uint.encode(state, m.version)
     c.fixed32.encode(state, m.seed)
@@ -83,7 +81,7 @@ const encoding2 = {
     if (m.referrer) c.fixed32.encode(state, m.referrer)
     if (m.blockEncryptionKey) c.fixed32.encode(state, m.blockEncryptionKey)
   },
-  decode (state) {
+  decode(state) {
     const r0 = c.uint.decode(state)
     const r1 = c.fixed32.decode(state)
     const flags = c.uint.decode(state)
@@ -99,7 +97,7 @@ const encoding2 = {
 
 // @blind-peer/add-core-request
 const encoding3 = {
-  preencode (state, m) {
+  preencode(state, m) {
     state.end++ // max flag is 16 so always one byte
     c.fixed32.preencode(state, m.key)
 
@@ -108,7 +106,7 @@ const encoding3 = {
     if (m.deprecatedAutobaseBlockKey) c.fixed32.preencode(state, m.deprecatedAutobaseBlockKey)
     if (m.priority) c.uint.preencode(state, m.priority)
   },
-  encode (state, m) {
+  encode(state, m) {
     const flags =
       (m.referrer ? 1 : 0) |
       (m.deprecatedAutobase ? 2 : 0) |
@@ -124,7 +122,7 @@ const encoding3 = {
     if (m.deprecatedAutobaseBlockKey) c.fixed32.encode(state, m.deprecatedAutobaseBlockKey)
     if (m.priority) c.uint.encode(state, m.priority)
   },
-  decode (state) {
+  decode(state) {
     const flags = c.uint.decode(state)
 
     return {
@@ -140,15 +138,15 @@ const encoding3 = {
 
 // @blind-peer/post-to-mailbox-request
 const encoding4 = {
-  preencode (state, m) {
+  preencode(state, m) {
     c.buffer.preencode(state, m.mailbox)
     c.buffer.preencode(state, m.message)
   },
-  encode (state, m) {
+  encode(state, m) {
     c.buffer.encode(state, m.mailbox)
     c.buffer.encode(state, m.message)
   },
-  decode (state) {
+  decode(state) {
     const r0 = c.buffer.decode(state)
     const r1 = c.buffer.decode(state)
 
@@ -161,15 +159,15 @@ const encoding4 = {
 
 // @blind-peer/wakeup-entry
 const encoding5 = {
-  preencode (state, m) {
+  preencode(state, m) {
     c.fixed32.preencode(state, m.key)
     c.uint.preencode(state, m.length)
   },
-  encode (state, m) {
+  encode(state, m) {
     c.fixed32.encode(state, m.key)
     c.uint.encode(state, m.length)
   },
-  decode (state) {
+  decode(state) {
     const r0 = c.fixed32.decode(state)
     const r1 = c.uint.decode(state)
 
@@ -185,17 +183,17 @@ const encoding6_2 = c.array(encoding5)
 
 // @blind-peer/wakeup-reply
 const encoding6 = {
-  preencode (state, m) {
+  preencode(state, m) {
     c.uint.preencode(state, m.version)
     c.uint.preencode(state, m.type)
     encoding6_2.preencode(state, m.writers)
   },
-  encode (state, m) {
+  encode(state, m) {
     c.uint.encode(state, m.version)
     c.uint.encode(state, m.type)
     encoding6_2.encode(state, m.writers)
   },
-  decode (state) {
+  decode(state) {
     const r0 = c.uint.decode(state)
     const r1 = c.uint.decode(state)
     const r2 = encoding6_2.decode(state)
@@ -210,7 +208,7 @@ const encoding6 = {
 
 // @blind-peer/core
 const encoding7 = {
-  preencode (state, m) {
+  preencode(state, m) {
     c.fixed32.preencode(state, m.key)
     c.uint.preencode(state, m.length)
     c.uint.preencode(state, m.bytesAllocated)
@@ -223,7 +221,7 @@ const encoding7 = {
     if (m.blocksCleared) c.uint.preencode(state, m.blocksCleared)
     if (m.bytesCleared) c.uint.preencode(state, m.bytesCleared)
   },
-  encode (state, m) {
+  encode(state, m) {
     const flags =
       (m.announce ? 1 : 0) |
       (m.referrer ? 2 : 0) |
@@ -242,7 +240,7 @@ const encoding7 = {
     if (m.blocksCleared) c.uint.encode(state, m.blocksCleared)
     if (m.bytesCleared) c.uint.encode(state, m.bytesCleared)
   },
-  decode (state) {
+  decode(state) {
     const r0 = c.fixed32.decode(state)
     const r1 = c.uint.decode(state)
     const r2 = c.uint.decode(state)
@@ -268,13 +266,13 @@ const encoding7 = {
 
 // @blind-peer/delete-core-request
 const encoding8 = {
-  preencode (state, m) {
+  preencode(state, m) {
     c.fixed32.preencode(state, m.key)
   },
-  encode (state, m) {
+  encode(state, m) {
     c.fixed32.encode(state, m.key)
   },
-  decode (state) {
+  decode(state) {
     const r0 = c.fixed32.decode(state)
 
     return {
@@ -283,53 +281,64 @@ const encoding8 = {
   }
 }
 
-function setVersion (v) {
+function setVersion(v) {
   version = v
 }
 
-function encode (name, value, v = VERSION) {
+function encode(name, value, v = VERSION) {
   version = v
   return c.encode(getEncoding(name), value)
 }
 
-function decode (name, buffer, v = VERSION) {
+function decode(name, buffer, v = VERSION) {
   version = v
   return c.decode(getEncoding(name), buffer)
 }
 
-function getEnum (name) {
+function getEnum(name) {
   switch (name) {
-    default: throw new Error('Enum not found ' + name)
+    default:
+      throw new Error('Enum not found ' + name)
   }
 }
 
-function getEncoding (name) {
+function getEncoding(name) {
   switch (name) {
-    case '@blind-peer/auth': return encoding0
-    case '@blind-peer/digest': return encoding1
-    case '@blind-peer/mailbox': return encoding2
-    case '@blind-peer/add-core-request': return encoding3
-    case '@blind-peer/post-to-mailbox-request': return encoding4
-    case '@blind-peer/wakeup-entry': return encoding5
-    case '@blind-peer/wakeup-reply': return encoding6
-    case '@blind-peer/core': return encoding7
-    case '@blind-peer/delete-core-request': return encoding8
-    default: throw new Error('Encoder not found ' + name)
+    case '@blind-peer/auth':
+      return encoding0
+    case '@blind-peer/digest':
+      return encoding1
+    case '@blind-peer/mailbox':
+      return encoding2
+    case '@blind-peer/add-core-request':
+      return encoding3
+    case '@blind-peer/post-to-mailbox-request':
+      return encoding4
+    case '@blind-peer/wakeup-entry':
+      return encoding5
+    case '@blind-peer/wakeup-reply':
+      return encoding6
+    case '@blind-peer/core':
+      return encoding7
+    case '@blind-peer/delete-core-request':
+      return encoding8
+    default:
+      throw new Error('Encoder not found ' + name)
   }
 }
 
-function getStruct (name, v = VERSION) {
+function getStruct(name, v = VERSION) {
   const enc = getEncoding(name)
   return {
-    preencode (state, m) {
+    preencode(state, m) {
       version = v
       enc.preencode(state, m)
     },
-    encode (state, m) {
+    encode(state, m) {
       version = v
       enc.encode(state, m)
     },
-    decode (state) {
+    decode(state) {
       version = v
       return enc.decode(state)
     }
@@ -338,4 +347,13 @@ function getStruct (name, v = VERSION) {
 
 const resolveStruct = getStruct // compat
 
-module.exports = { resolveStruct, getStruct, getEnum, getEncoding, encode, decode, setVersion, version }
+module.exports = {
+  resolveStruct,
+  getStruct,
+  getEnum,
+  getEncoding,
+  encode,
+  decode,
+  setVersion,
+  version
+}

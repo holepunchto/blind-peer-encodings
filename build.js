@@ -233,7 +233,6 @@ peerSchema.register({
       type: 'uint',
       required: false
     }
-
   ]
 })
 

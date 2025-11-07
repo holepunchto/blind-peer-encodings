@@ -4,7 +4,8 @@
   "description": "Blind-peer encodings",
   "main": "index.js",
   "scripts": {
-    "test": "standard"
+    "format": "prettier --write .",
+    "test": "prettier --check ."
   },
   "files": [
     "index.js",
@@ -28,7 +29,8 @@
   "homepage": "https://github.com/holepunchto/blind-peer-encodings#readme",
   "devDependencies": {
     "hyperschema": "^1.10.4",
-    "standard": "^17.1.2"
+    "prettier": "^3.6.2",
+    "prettier-config-holepunch": "^2.0.0"
   },
   "dependencies": {
     "compact-encoding": "^2.16.0",
