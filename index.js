@@ -22,7 +22,7 @@ const AddCoreEncoding = {
 
 const AddAutobaseCoresEncoding = {
   requestEncoding: AddAutobaseCoresRequest,
-  responseEncoding: c.array(CoreRecord)
+  responseEncoding: cenc.none
 }
 
 const DeleteCoreEncoding = {
