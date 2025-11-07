@@ -13,7 +13,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/holepunchto/blind-peer-client.git"
+    "url": "git+https://github.com/holepunchto/blind-peer-encodings.git"
   },
   "keywords": [
     "Blind",
@@ -23,9 +23,9 @@
   "author": "Holepunch",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/holepunchto/blind-peer-client/issues"
+    "url": "https://github.com/holepunchto/blind-peer-encodings/issues"
   },
-  "homepage": "https://github.com/holepunchto/blind-peer-client#readme",
+  "homepage": "https://github.com/holepunchto/blind-peer-encodings#readme",
   "devDependencies": {
     "hyperschema": "^1.10.4",
     "standard": "^17.1.2"
