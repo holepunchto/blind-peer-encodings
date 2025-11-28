@@ -47,6 +47,7 @@
       "type": 2,
       "collection": "@blind-peer/cores",
       "unique": true,
+      "deprecated": false,
       "key": {
         "type": {
           "fields": [
@@ -74,6 +75,7 @@
       "type": 2,
       "collection": "@blind-peer/cores",
       "unique": true,
+      "deprecated": false,
       "key": {
         "type": {
           "fields": [
@@ -93,6 +95,7 @@
       "type": 2,
       "collection": "@blind-peer/cores",
       "unique": false,
+      "deprecated": false,
       "key": ["priority", "active"]
     },
     {
@@ -102,6 +105,7 @@
       "type": 2,
       "collection": "@blind-peer/cores",
       "unique": false,
+      "deprecated": false,
       "key": ["bytesAllocated"]
     }
   ]

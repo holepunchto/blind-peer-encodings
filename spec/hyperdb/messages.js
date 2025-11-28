@@ -2,9 +2,11 @@
 // Schema Version: 1
 /* eslint-disable camelcase */
 /* eslint-disable quotes */
+/* eslint-disable space-before-function-paren */
+
+const { c } = require('hyperschema/runtime')
 
 const VERSION = 1
-const { c } = require('hyperschema/runtime')
 
 // eslint-disable-next-line no-unused-vars
 let version = VERSION
@@ -281,8 +283,44 @@ const encoding8 = {
   }
 }
 
+// @blind-peer/add-cores-item
+const encoding9 = encoding5
+
+// @blind-peer/add-cores-request.cores
+const encoding10_0 = c.array(c.frame(encoding9))
+
+// @blind-peer/add-cores-request
+const encoding10 = {
+  preencode(state, m) {
+    encoding10_0.preencode(state, m.cores)
+    state.end++ // max flag is 2 so always one byte
+
+    if (m.referrer) c.fixed32.preencode(state, m.referrer)
+    if (m.priority) c.uint.preencode(state, m.priority)
+  },
+  encode(state, m) {
+    const flags = (m.referrer ? 1 : 0) | (m.priority ? 2 : 0)
+
+    encoding10_0.encode(state, m.cores)
+    c.uint.encode(state, flags)
+
+    if (m.referrer) c.fixed32.encode(state, m.referrer)
+    if (m.priority) c.uint.encode(state, m.priority)
+  },
+  decode(state) {
+    const r0 = encoding10_0.decode(state)
+    const flags = c.uint.decode(state)
+
+    return {
+      cores: r0,
+      referrer: (flags & 1) !== 0 ? c.fixed32.decode(state) : null,
+      priority: (flags & 2) !== 0 ? c.uint.decode(state) : 0
+    }
+  }
+}
+
 // @blind-peer/core/hyperdb#2
-const encoding9 = {
+const encoding11 = {
   preencode(state, m) {
     c.uint.preencode(state, m.length)
     c.uint.preencode(state, m.bytesAllocated)
@@ -377,8 +415,12 @@ function getEncoding(name) {
       return encoding7
     case '@blind-peer/delete-core-request':
       return encoding8
-    case '@blind-peer/core/hyperdb#2':
+    case '@blind-peer/add-cores-item':
       return encoding9
+    case '@blind-peer/add-cores-request':
+      return encoding10
+    case '@blind-peer/core/hyperdb#2':
+      return encoding11
     default:
       throw new Error('Encoder not found ' + name)
   }
