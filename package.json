@@ -34,6 +34,6 @@
   },
   "dependencies": {
     "compact-encoding": "^2.16.0",
-    "hyperdb": "^4.9.1"
+    "hyperdb": "^5.0.0"
   }
 }
