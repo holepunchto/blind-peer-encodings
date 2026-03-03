@@ -1,6 +1,7 @@
 const c = require('compact-encoding')
 const definition = require('./spec/hyperdb')
 const schema = require('./spec/hyperschema')
+const schemaRouter = require('./spec-router/hyperschema')
 
 const AddCoreRequest = schema.getEncoding('@blind-peer/add-core-request')
 const DeleteCoreRequest = schema.getEncoding('@blind-peer/delete-core-request')
@@ -9,8 +10,8 @@ const PostToMailboxRequest = schema.getEncoding('@blind-peer/post-to-mailbox-req
 const Mailbox = schema.getEncoding('@blind-peer/mailbox')
 const CoreRecord = schema.getEncoding('@blind-peer/core')
 
-const RouterResolvePeersRequest = schema.getEncoding('@blind-peer-router/resolve-peers-request')
-const RouterResolvePeersResponse = schema.getEncoding('@blind-peer-router/resolve-peers-response')
+const RouterResolvePeersRequest = schemaRouter.getEncoding('@blind-peer-router/resolve-peers-request')
+const RouterResolvePeersResponse = schemaRouter.getEncoding('@blind-peer-router/resolve-peers-response')
 
 const PostToMailboxEncoding = {
   requestEncoding: PostToMailboxRequest,
