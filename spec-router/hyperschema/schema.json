@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "schema": [
+    {
+      "name": "peer",
+      "namespace": "blind-peer-router",
+      "compact": false,
+      "flagsPosition": 1,
+      "fields": [
+        {
+          "name": "key",
+          "required": true,
+          "type": "fixed32",
+          "version": 1
+        },
+        {
+          "name": "location",
+          "type": "string",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "name": "assignment",
+      "namespace": "blind-peer-router",
+      "compact": false,
+      "flagsPosition": -1,
+      "fields": [
+        {
+          "name": "key",
+          "required": true,
+          "type": "fixed32",
+          "version": 1
+        },
+        {
+          "name": "peers",
+          "required": true,
+          "array": true,
+          "type": "@blind-peer-router/peer",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "name": "resolve-peers-request",
+      "namespace": "blind-peer-router",
+      "compact": false,
+      "flagsPosition": -1,
+      "fields": [
+        {
+          "name": "key",
+          "required": true,
+          "type": "fixed32",
+          "version": 1
+        }
+      ]
+    },
+    {
+      "name": "resolve-peers-response",
+      "namespace": "blind-peer-router",
+      "compact": false,
+      "flagsPosition": -1,
+      "fields": [
+        {
+          "name": "peers",
+          "required": true,
+          "array": true,
+          "type": "@blind-peer-router/peer",
+          "version": 1
+        }
+      ]
+    }
+  ]
+}

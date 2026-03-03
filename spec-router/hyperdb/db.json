@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "offset": 0,
+  "schema": [
+    {
+      "name": "assignment",
+      "namespace": "blind-peer-router",
+      "id": 0,
+      "type": 1,
+      "version": 1,
+      "versionField": null,
+      "indexes": [],
+      "schema": "@blind-peer-router/assignment",
+      "derived": false,
+      "key": ["key"],
+      "trigger": null
+    }
+  ]
+}

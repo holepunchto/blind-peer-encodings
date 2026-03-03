@@ -10,6 +10,7 @@
   "files": [
     "index.js",
     "spec/",
+    "spec-router/",
     "lib/"
   ],
   "repository": {
