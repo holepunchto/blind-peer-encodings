@@ -9,6 +9,9 @@ const PostToMailboxRequest = schema.getEncoding('@blind-peer/post-to-mailbox-req
 const Mailbox = schema.getEncoding('@blind-peer/mailbox')
 const CoreRecord = schema.getEncoding('@blind-peer/core')
 
+const RouterResolvePeersRequest = schema.getEncoding('@blind-peer-router/resolve-peers-request')
+const RouterResolvePeersResponse = schema.getEncoding('@blind-peer-router/resolve-peers-response')
+
 const PostToMailboxEncoding = {
   requestEncoding: PostToMailboxRequest,
   responseEncoding: c.none
@@ -74,5 +77,7 @@ module.exports = {
   DeleteCoreEncoding,
   Mailbox,
   CoreRecord,
+  RouterResolvePeersRequest,
+  RouterResolvePeersResponse,
   BlindPeerError
 }
