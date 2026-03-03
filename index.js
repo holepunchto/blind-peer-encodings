@@ -10,8 +10,12 @@ const PostToMailboxRequest = schema.getEncoding('@blind-peer/post-to-mailbox-req
 const Mailbox = schema.getEncoding('@blind-peer/mailbox')
 const CoreRecord = schema.getEncoding('@blind-peer/core')
 
-const RouterResolvePeersRequest = schemaRouter.getEncoding('@blind-peer-router/resolve-peers-request')
-const RouterResolvePeersResponse = schemaRouter.getEncoding('@blind-peer-router/resolve-peers-response')
+const RouterResolvePeersRequest = schemaRouter.getEncoding(
+  '@blind-peer-router/resolve-peers-request'
+)
+const RouterResolvePeersResponse = schemaRouter.getEncoding(
+  '@blind-peer-router/resolve-peers-response'
+)
 
 const PostToMailboxEncoding = {
   requestEncoding: PostToMailboxRequest,
