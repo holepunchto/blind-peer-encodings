@@ -1,5 +1,6 @@
 const c = require('compact-encoding')
 const definition = require('./spec/hyperdb')
+const definitionRouter = require('./spec-router/hyperdb')
 const schema = require('./spec/hyperschema')
 const schemaRouter = require('./spec-router/hyperschema')
 
@@ -76,7 +77,9 @@ class BlindPeerError extends Error {
 
 module.exports = {
   definition,
+  definitionRouter,
   schema,
+  schemaRouter,
   PostToMailboxEncoding,
   AddCoreEncoding,
   DeleteCoreEncoding,
