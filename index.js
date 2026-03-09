@@ -1,8 +1,8 @@
 const c = require('compact-encoding')
 const definition = require('./spec/hyperdb')
-const definitionRouter = require('./spec-router/hyperdb')
+const routerDefinition = require('./spec-router/hyperdb')
 const schema = require('./spec/hyperschema')
-const schemaRouter = require('./spec-router/hyperschema')
+const routerSchema = require('./spec-router/hyperschema')
 
 const AddCoreRequest = schema.getEncoding('@blind-peer/add-core-request')
 const DeleteCoreRequest = schema.getEncoding('@blind-peer/delete-core-request')
@@ -11,10 +11,10 @@ const PostToMailboxRequest = schema.getEncoding('@blind-peer/post-to-mailbox-req
 const Mailbox = schema.getEncoding('@blind-peer/mailbox')
 const CoreRecord = schema.getEncoding('@blind-peer/core')
 
-const RouterResolvePeersRequest = schemaRouter.getEncoding(
+const RouterResolvePeersRequest = routerSchema.getEncoding(
   '@blind-peer-router/resolve-peers-request'
 )
-const RouterResolvePeersResponse = schemaRouter.getEncoding(
+const RouterResolvePeersResponse = routerSchema.getEncoding(
   '@blind-peer-router/resolve-peers-response'
 )
 
@@ -77,9 +77,9 @@ class BlindPeerError extends Error {
 
 module.exports = {
   definition,
-  definitionRouter,
+  routerDefinition,
   schema,
-  schemaRouter,
+  routerSchema,
   PostToMailboxEncoding,
   AddCoreEncoding,
   DeleteCoreEncoding,
