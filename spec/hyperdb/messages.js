@@ -2,9 +2,11 @@
 // Schema Version: 1
 /* eslint-disable camelcase */
 /* eslint-disable quotes */
+/* eslint-disable space-before-function-paren */
+
+const { c } = require('hyperschema/runtime')
 
 const VERSION = 1
-const { c } = require('hyperschema/runtime')
 
 // eslint-disable-next-line no-unused-vars
 let version = VERSION
