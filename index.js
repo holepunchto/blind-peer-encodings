@@ -5,6 +5,7 @@ const schema = require('./spec/hyperschema')
 const routerSchema = require('./spec-router/hyperschema')
 
 const AddCoreRequest = schema.getEncoding('@blind-peer/add-core-request')
+const AddCoresRequest = schema.getEncoding('@blind-peer/add-cores-request')
 const DeleteCoreRequest = schema.getEncoding('@blind-peer/delete-core-request')
 
 const PostToMailboxRequest = schema.getEncoding('@blind-peer/post-to-mailbox-request')
@@ -26,6 +27,11 @@ const PostToMailboxEncoding = {
 const AddCoreEncoding = {
   requestEncoding: AddCoreRequest,
   responseEncoding: CoreRecord
+}
+
+const AddCoresEncoding = {
+  requestEncoding: AddCoresRequest,
+  responseEncoding: c.none
 }
 
 const DeleteCoreEncoding = {
@@ -82,6 +88,7 @@ module.exports = {
   routerSchema,
   PostToMailboxEncoding,
   AddCoreEncoding,
+  AddCoresEncoding,
   DeleteCoreEncoding,
   Mailbox,
   CoreRecord,
