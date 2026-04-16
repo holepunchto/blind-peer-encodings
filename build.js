@@ -232,6 +232,11 @@ peerSchema.register({
       name: 'bytesCleared',
       type: 'uint',
       required: false
+    },
+    {
+      name: 'wakeup',
+      type: 'bool',
+      required: false
     }
   ]
 })
