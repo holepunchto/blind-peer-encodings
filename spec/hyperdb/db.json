@@ -7,6 +7,8 @@
       "namespace": "blind-peer",
       "id": 0,
       "type": 1,
+      "version": 0,
+      "versionField": null,
       "indexes": [],
       "schema": "@blind-peer/auth",
       "derived": false,
@@ -18,6 +20,8 @@
       "namespace": "blind-peer",
       "id": 1,
       "type": 1,
+      "version": 0,
+      "versionField": null,
       "indexes": [],
       "schema": "@blind-peer/digest",
       "derived": false,
@@ -29,6 +33,8 @@
       "namespace": "blind-peer",
       "id": 2,
       "type": 1,
+      "version": 0,
+      "versionField": null,
       "indexes": [
         "@blind-peer/cores-by-referrer",
         "@blind-peer/cores-by-announce",
@@ -37,7 +43,9 @@
       ],
       "schema": "@blind-peer/core",
       "derived": false,
-      "key": ["key"],
+      "key": [
+        "key"
+      ],
       "trigger": null
     },
     {
@@ -45,8 +53,10 @@
       "namespace": "blind-peer",
       "id": 3,
       "type": 2,
+      "version": 0,
       "collection": "@blind-peer/cores",
       "unique": true,
+      "deprecated": false,
       "key": {
         "type": {
           "fields": [
@@ -72,8 +82,10 @@
       "namespace": "blind-peer",
       "id": 4,
       "type": 2,
+      "version": 0,
       "collection": "@blind-peer/cores",
       "unique": true,
+      "deprecated": false,
       "key": {
         "type": {
           "fields": [
@@ -91,18 +103,27 @@
       "namespace": "blind-peer",
       "id": 5,
       "type": 2,
+      "version": 0,
       "collection": "@blind-peer/cores",
       "unique": false,
-      "key": ["priority", "active"]
+      "deprecated": false,
+      "key": [
+        "priority",
+        "active"
+      ]
     },
     {
       "name": "cores-by-bytes-allocated",
       "namespace": "blind-peer",
       "id": 6,
       "type": 2,
+      "version": 0,
       "collection": "@blind-peer/cores",
       "unique": false,
-      "key": ["bytesAllocated"]
+      "deprecated": false,
+      "key": [
+        "bytesAllocated"
+      ]
     }
   ]
 }

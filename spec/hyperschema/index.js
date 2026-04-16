@@ -2,9 +2,11 @@
 // Schema Version: 1
 /* eslint-disable camelcase */
 /* eslint-disable quotes */
+/* eslint-disable space-before-function-paren */
+
+const { c } = require('hyperschema/runtime')
 
 const VERSION = 1
-const { c } = require('hyperschema/runtime')
 
 // eslint-disable-next-line no-unused-vars
 let version = VERSION
@@ -215,7 +217,7 @@ const encoding7 = {
     c.uint.preencode(state, m.updated)
     c.uint.preencode(state, m.active)
     c.uint.preencode(state, m.priority)
-    state.end++ // max flag is 8 so always one byte
+    state.end++ // max flag is 16 so always one byte
 
     if (m.referrer) c.fixed32.preencode(state, m.referrer)
     if (m.blocksCleared) c.uint.preencode(state, m.blocksCleared)
@@ -226,7 +228,8 @@ const encoding7 = {
       (m.announce ? 1 : 0) |
       (m.referrer ? 2 : 0) |
       (m.blocksCleared ? 4 : 0) |
-      (m.bytesCleared ? 8 : 0)
+      (m.bytesCleared ? 8 : 0) |
+      (m.wakeup ? 16 : 0)
 
     c.fixed32.encode(state, m.key)
     c.uint.encode(state, m.length)
@@ -259,7 +262,8 @@ const encoding7 = {
       announce: (flags & 1) !== 0,
       referrer: (flags & 2) !== 0 ? c.fixed32.decode(state) : null,
       blocksCleared: (flags & 4) !== 0 ? c.uint.decode(state) : 0,
-      bytesCleared: (flags & 8) !== 0 ? c.uint.decode(state) : 0
+      bytesCleared: (flags & 8) !== 0 ? c.uint.decode(state) : 0,
+      wakeup: (flags & 16) !== 0
     }
   }
 }
