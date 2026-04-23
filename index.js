@@ -1,7 +1,9 @@
+const b4a = require('b4a')
 const c = require('compact-encoding')
 const definition = require('./spec/hyperdb')
 const routerDefinition = require('./spec-router/hyperdb')
 const schema = require('./spec/hyperschema')
+const adminSchema = require('./spec-admin/hyperschema')
 const routerSchema = require('./spec-router/hyperschema')
 
 const AddCoreRequest = schema.getEncoding('@blind-peer/add-core-request')
@@ -17,6 +19,8 @@ const RouterResolvePeersRequest = routerSchema.getEncoding(
 const RouterResolvePeersResponse = routerSchema.getEncoding(
   '@blind-peer-router/resolve-peers-response'
 )
+const AdminQueryTopKResponse = adminSchema.getEncoding('@blind-peer-admin/query-top-k-response')
+const ADMIN_CHANNEL_ID = b4a.from('blind-peer-admin-rpc')
 
 const PostToMailboxEncoding = {
   requestEncoding: PostToMailboxRequest,
@@ -31,6 +35,11 @@ const AddCoreEncoding = {
 const DeleteCoreEncoding = {
   requestEncoding: DeleteCoreRequest,
   responseEncoding: c.bool
+}
+
+const AdminQueryTopKEncoding = {
+  requestEncoding: c.none,
+  responseEncoding: AdminQueryTopKResponse
 }
 
 class BlindPeerError extends Error {
@@ -80,11 +89,14 @@ module.exports = {
   routerDefinition,
   schema,
   routerSchema,
+  ADMIN_CHANNEL_ID,
   PostToMailboxEncoding,
   AddCoreEncoding,
   DeleteCoreEncoding,
+  AdminQueryTopKEncoding,
   Mailbox,
   CoreRecord,
+  AdminQueryTopKResponse,
   RouterResolvePeersRequest,
   RouterResolvePeersResponse,
   BlindPeerError
